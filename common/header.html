@@ -1,0 +1,18 @@
+<script type="text/discourse-plugin" version="0.8">
+    api.modifyClass("controller:full-page-search", {
+      pluginId: "discourse-no-results-new-topic",
+      
+      @observes("searchTerm")
+      searchTermChanged() {
+        this.set("noResults", false);
+        if (this.searchTerm && this.searchTerm.length > 2) {
+          this.search();
+        }
+      },
+  
+      @observes("resultCount")
+      resultCountChanged() {
+        this.set("noResults", this.resultCount === 0);
+      }
+    });
+  </script>
