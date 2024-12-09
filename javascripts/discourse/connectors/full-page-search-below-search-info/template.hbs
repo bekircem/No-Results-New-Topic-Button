@@ -1,38 +1,11 @@
-<div style="
-  background: #333;
-  color: #fff;
-  padding: 10px;
-  margin: 10px;
-  font-family: monospace;
-  white-space: pre-wrap;
-  font-size: 12px;
-">
-Debug Detayları:
-
-1. OutletArgs:
-search: {{@outletArgs.search}}
-searchTerm: {{@outletArgs.searchTerm}}
-resultCount: {{@outletArgs.resultCount}}
-hasResults: {{@outletArgs.hasResults}}
-
-2. Parent Component Args:
-{{#each-in this.parentView.args as |key value|}}
-  {{key}}: {{value}}
-{{/each-in}}
-
-3. Parent Component Properties:
-{{#each-in this.parentView as |key value|}}
-  {{key}}: {{value}}
-{{/each-in}}
-
-4. Context Properties:
-searchTerm: {{searchTerm}}
-noResults: {{noResults}}
-hasResults: {{hasResults}}
-resultCount: {{resultCount}}
-
-5. Full Component Debug:
-parentView: {{this.parentView}}
-args: {{this.args}}
-context: {{this}}
-</div>
+{{#if this.searchController.searchTerm}}
+  {{#unless this.searchController.model.resultCount}}
+    <div class="custom-no-results">
+      <h3>No results found.</h3>
+      <p class="no-results-text">Can't find what you're looking for?</p>
+      {{#if this.currentUser}}
+        <SearchNoResultsButton />
+      {{/if}}
+    </div>
+  {{/unless}}
+{{/if}}
