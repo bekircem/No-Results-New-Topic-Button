@@ -1,29 +1,29 @@
 <script type="text/discourse-plugin" version="0.8">
-  const { h } = require("virtual-dom");
-  const { createWidget } = require("discourse/widgets/widget");
+  import { withPluginApi } from "discourse/lib/plugin-api";
+  import { createWidget } from "discourse/widgets/widget";
   
-  createWidget("no-results-new-topic", {
-    tagName: "div.no-results-action",
+  withPluginApi("0.8", api => {
+    createWidget("no-results-new-topic-widget", {
+      tagName: "div.custom-new-topic-btn",
   
-    html(attrs, state) {
-      const searchController = container.lookup("controller:full-page-search");
-      if (!searchController || searchController.resultCount !== 0) {
-        return;
+      html(attrs) {
+        if (!this.currentUser) {
+          return;
+        }
+  
+        return this.attach('button', {
+          className: 'btn-primary',
+          label: 'topic.create',
+          action: 'createTopic'
+        });
+      },
+  
+      createTopic() {
+        const router = container.lookup('service:router');
+        router.transitionTo('discovery.latest').then(() => {
+          document.querySelector('.btn-default.new-topic-button')?.click();
+        });
       }
-  
-      return h("div.no-results-action", [
-        h("button.btn.btn-primary.create-topic", {
-          onclick: () => {
-            const router = container.lookup("service:router");
-            router.transitionTo("discovery.latest").then(() => {
-              const newTopicButton = document.querySelector(".btn-default.new-topic-button");
-              if (newTopicButton) {
-                newTopicButton.click();
-              }
-            });
-          }
-        }, I18n.t("topic.create"))
-      ]);
-    }
+    });
   });
   </script>
