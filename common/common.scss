@@ -1,9 +1,11 @@
 // common/common.scss
 .test-outlet {
-  margin: 20px;
+  display: block;
+  margin: 20px 0;
   padding: 20px;
   background-color: red;
   color: white;
   text-align: center;
   font-weight: bold;
+  border: 3px solid yellow;
 }
