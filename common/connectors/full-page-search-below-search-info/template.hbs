@@ -1,24 +1,9 @@
-<div class="debug-search-variables">
-  <h3>Debug Değişkenleri:</h3>
-  
-  <p>searchTerm: {{searchTerm}}</p>
-  <p>resultCount: {{resultCount}}</p>
-  <p>model.resultCount: {{model.resultCount}}</p>
-  <p>noResults: {{noResults}}</p>
-  <p>results: {{results}}</p>
-  <p>searchResults: {{searchResults}}</p>
-  <p>hasResults: {{hasResults}}</p>
-  <p>model.hasResults: {{model.hasResults}}</p>
-  <p>loading: {{loading}}</p>
-  <p>isLoading: {{isLoading}}</p>
-  <p>model.loading: {{model.loading}}</p>
-  
-  <h4>Model Debug:</h4>
-  <pre>{{json model}}</pre>
-  
-  <h4>Args Debug:</h4>
-  <pre>{{json attrs}}</pre>
-  
-  <h4>Parent Component Debug:</h4>
-  <pre>{{json parentView.attrs}}</pre>
-</div>
+{{#if currentUser}}
+  <div class="new-topic-button-wrapper">
+    {{d-button
+      class="btn-primary"
+      action=(route-action "createTopic")
+      icon="plus"
+      label="topic.create"}}
+  </div>
+{{/if}}
