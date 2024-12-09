@@ -1,11 +1,1 @@
-{{#if this.searchController.searchTerm}}
-  {{#unless this.searchController.model.resultCount}}
-    <div class="custom-no-results">
-      <h3>No results found.</h3>
-      <p class="no-results-text">Can't find what you're looking for?</p>
-      {{#if this.currentUser}}
-        <SearchNoResultsButton />
-      {{/if}}
-    </div>
-  {{/unless}}
-{{/if}}
+<SearchResultsNoResult @target={{this}} />
