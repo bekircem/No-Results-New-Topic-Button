@@ -1,11 +1,20 @@
-{{#if @outletArgs.search}}
-  {{#unless @outletArgs.searchResults.length}}
-    <div class="custom-no-results">
-      <h3>No results found.</h3>
-      <p class="no-results-text">Can't find what you're looking for?</p>
-      {{#if currentUser}}
-        <SearchNoResultsButton />
-      {{/if}}
-    </div>
-  {{/unless}}
-{{/if}}
+<div style="
+  background: #333;
+  color: #fff;
+  padding: 10px;
+  margin: 10px;
+  font-family: monospace;
+  white-space: pre-wrap;
+">
+Debug bilgileri:
+search: {{@outletArgs.search}}
+searchTerm: {{@outletArgs.searchTerm}}
+resultCount: {{@outletArgs.resultCount}}
+hasResults: {{@outletArgs.hasResults}}
+searchResults length: {{@outletArgs.searchResults.length}}
+
+Tüm outlet değerleri:
+{{#each-in @outletArgs as |key value|}}
+  {{key}}: {{value}}
+{{/each-in}}
+</div>
