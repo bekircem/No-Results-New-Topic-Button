@@ -1,9 +1,9 @@
-{{#unless model.resultCount}}
+{{#if this.noResults}}
   <div class="new-topic-button-container">
     {{d-button
-      class="btn-primary"
+      class="btn-primary create-topic-button"
       action=(route-action "createTopic")
       icon="plus"
       label="topic.create"}}
   </div>
-{{/unless}}
+{{/if}}
