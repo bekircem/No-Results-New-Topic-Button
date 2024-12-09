@@ -1,3 +1,9 @@
-<div class="test-outlet">
-  TEST YAZISI - CONNECTOR TEST
+<div class="search-no-results-actions">
+  {{#if currentUser}}
+    {{d-button
+      class="btn-primary create-topic-button"
+      action=(route-action "createTopic")
+      icon="plus"
+      label="topic.create"}}
+  {{/if}}
 </div>
