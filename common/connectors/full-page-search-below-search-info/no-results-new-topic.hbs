@@ -1,9 +1,12 @@
-{{#if currentUser}}
-  <div class="no-results-action">
-    {{d-button
-      class="btn-primary"
-      action=(route-action "createTopic")
-      icon="plus"
-      label="topic.create"}}
-  </div>
+{{#if this.currentUser}}
+  {{#if this.shouldShow}}
+    <div class="no-results-action">
+      <DButton
+        @class="btn-primary create-topic"
+        @action={{this.createNewTopic}}
+        @icon="plus"
+        @label="topic.create"
+      />
+    </div>
+  {{/if}}
 {{/if}}

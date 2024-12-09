@@ -1,8 +1,22 @@
 <script type="text/discourse-plugin" version="0.8">
-  api.registerConnectorClass('full-page-search-below-search-info', 'no-results-new-topic', {
-    shouldRender(args, component) {
-      const searchController = component.register.lookup('controller:full-page-search');
+  import Component from "@glimmer/component";
+  import { inject as service } from "@ember/service";
+  import { action } from "@ember/object";
+
+  export default class NoResultsNewTopic extends Component {
+    @service router;
+    @service currentUser;
+
+    get shouldShow() {
+      const searchController = this.register.lookup("controller:full-page-search");
       return searchController && searchController.resultCount === 0;
     }
-  });
+
+    @action
+    createNewTopic() {
+      this.router.transitionTo("discovery.latest").then(() => {
+        document.querySelector(".btn-default.new-topic-button")?.click();
+      });
+    }
+  }
 </script>
