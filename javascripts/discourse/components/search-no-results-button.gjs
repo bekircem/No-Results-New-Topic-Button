@@ -14,13 +14,15 @@ export default class SearchNoResultsButton extends Component {
   };
 
   <template>
-    <div class="search-no-results-actions">
-      <DButton
-        @class="btn-primary create-topic-button"
-        @action={{this.createNewTopic}}
-        @icon="plus"
-        @label="topic.create"
-      />
-    </div>
+    {{#if this.args.noResults}}
+      <div class="search-no-results-actions">
+        <DButton
+          @class="btn-primary create-topic-button"
+          @action={{this.createNewTopic}}
+          @icon="plus"
+          @label="topic.create"
+        />
+      </div>
+    {{/if}}
   </template>
 }
