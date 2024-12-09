@@ -1,3 +1,9 @@
 {{#unless model.resultCount}}
-  {{mount-widget widget="no-results-new-topic-widget"}}
+  <div class="new-topic-button-container">
+    {{d-button
+      class="btn-primary"
+      action=(route-action "createTopic")
+      icon="plus"
+      label="topic.create"}}
+  </div>
 {{/unless}}
