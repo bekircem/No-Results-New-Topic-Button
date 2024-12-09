@@ -1,0 +1,8 @@
+{{#unless this.searchTerm}}
+  <div class="no-results-wrapper">
+    <p class="no-results-text">Can't find what you're looking for?</p>
+    {{#if currentUser}}
+      <SearchNoResultsButton />
+    {{/if}}
+  </div>
+{{/unless}}
