@@ -1,6 +1,11 @@
-.no-results-wrapper {
+.custom-no-results {
   margin-top: 1em;
   text-align: center;
+
+  h3 {
+    font-size: 1.3em;
+    margin-bottom: 0.5em;
+  }
 }
 
 .no-results-text {
@@ -15,8 +20,7 @@
   }
 }
 
-.no-results-suggestion {
-  a {
-    display: none;
-  }
+// Hide
+.fps-result .loading-container {
+  display: none;
 }
