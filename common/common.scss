@@ -1,10 +1,9 @@
-.no-results-suggestion {
-  .new-topic-button-wrapper {
-    margin-top: 1em;
-    text-align: center;
-  }
-  
-  a {
-    display: none;  // Orijinal linki gizle
-  }
+// common/common.scss
+.test-outlet {
+  margin: 20px;
+  padding: 20px;
+  background-color: red;
+  color: white;
+  text-align: center;
+  font-weight: bold;
 }
