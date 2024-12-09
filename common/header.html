@@ -1,27 +1,29 @@
 <script type="text/discourse-plugin" version="0.8">
-  import Component from "@glimmer/component";
-  import { inject as service } from "@ember/service";
-  import { action } from "@ember/object";
-  import { withPluginApi } from "discourse/lib/plugin-api";
+  const { h } = require("virtual-dom");
+  const { createWidget } = require("discourse/widgets/widget");
   
-  class NoResultsNewTopicComponent extends Component {
-    @service router;
-    @service currentUser;
+  createWidget("no-results-new-topic", {
+    tagName: "div.no-results-action",
   
-    get shouldShow() {
-      const searchController = this.register.lookup("controller:full-page-search");
-      return searchController && searchController.resultCount === 0;
+    html(attrs, state) {
+      const searchController = container.lookup("controller:full-page-search");
+      if (!searchController || searchController.resultCount !== 0) {
+        return;
+      }
+  
+      return h("div.no-results-action", [
+        h("button.btn.btn-primary.create-topic", {
+          onclick: () => {
+            const router = container.lookup("service:router");
+            router.transitionTo("discovery.latest").then(() => {
+              const newTopicButton = document.querySelector(".btn-default.new-topic-button");
+              if (newTopicButton) {
+                newTopicButton.click();
+              }
+            });
+          }
+        }, I18n.t("topic.create"))
+      ]);
     }
-  
-    @action
-    createNewTopic() {
-      this.router.transitionTo("discovery.latest").then(() => {
-        document.querySelector(".btn-default.new-topic-button")?.click();
-      });
-    }
-  }
-  
-  withPluginApi("0.8", (api) => {
-    api.renderInOutlet("full-page-search-below-search-info", NoResultsNewTopicComponent);
   });
   </script>
