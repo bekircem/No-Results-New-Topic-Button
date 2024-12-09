@@ -2,16 +2,17 @@
   import Component from "@glimmer/component";
   import { inject as service } from "@ember/service";
   import { action } from "@ember/object";
-
-  export default class NoResultsNewTopic extends Component {
+  import { withPluginApi } from "discourse/lib/plugin-api";
+  
+  class NoResultsNewTopicComponent extends Component {
     @service router;
     @service currentUser;
-
+  
     get shouldShow() {
       const searchController = this.register.lookup("controller:full-page-search");
       return searchController && searchController.resultCount === 0;
     }
-
+  
     @action
     createNewTopic() {
       this.router.transitionTo("discovery.latest").then(() => {
@@ -19,4 +20,8 @@
       });
     }
   }
-</script>
+  
+  withPluginApi("0.8", (api) => {
+    api.renderInOutlet("full-page-search-below-search-info", NoResultsNewTopicComponent);
+  });
+  </script>
